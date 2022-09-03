@@ -1,0 +1,1 @@
+# Function bundle together with its lexial environment is called closures. When a function return or vanished from execton context it still rememeber the reference.  
