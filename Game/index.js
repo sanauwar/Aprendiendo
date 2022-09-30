@@ -1,31 +1,20 @@
-// const e2 = document.querySelector(".tile");
-// var elements = document.getElementsByClassName('tile'); // get all elements
-
-
-
-
-var table = document.querySelector('.tile')
-var selectedCells = table.getElementsByClassName('selected')
-
-table.addEventListener('click', function(e) {
-    var td = e.target
-    console.log('+++++++++++++', td)
-    // if (td.tagName !== 'TD') {
-    //   return
-    // }
-    
-    // if (selectedCells.length) {
-    //   selectedCells[0].className = ''    
-    // }
-  
-    // td.className = 'selected'
-  })
-
-//parent = document.querySelector("#parent")
-// console.log(parent.target)
-// .addEventListener('click', function () {
-//     alert('HI', this)
-//     console.log('Yii', this)
-// })
-
-
+let queue = [];
+document.addEventListener('click', () => {
+  const elem = event.target;
+  if (!elem.classList.contains('tile')) {
+    return false;
+  }
+  if (queue.includes(elem)) return false;
+  elem.classList.add("active")
+  queue.push(elem)
+  if (queue.length >= 9) {
+    const interval = setInterval(() => {
+      let tile = queue.shift()
+      alert(tile.dataset.id)
+      tile.classList.remove("active")
+      if (queue.length === 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+})
